@@ -59,11 +59,11 @@ function listContacts(addressBookToDisplay) {
 
 function displayContactDetails(event) {
   const contact = addressBook.findContact(event.target.id);
-  document.getElementById("first-name").innerText = contact.firstName;
-  document.getElementById("last-name").innerText = contact.lastName;
-  document.getElementById("phone-number").innerText = contact.phoneNumber;
+  document.querySelector(".first-name").innerText = contact.firstName;
+  document.querySelector(".last-name").innerText = contact.lastName;
+  document.querySelector(".phone-number").innerText = contact.phoneNumber;
   document.querySelector("button.delete").setAttribute("id", contact.id);
-  document.getElementById("div#contact-details").removeAttribute("class");
+  document.querySelector("div#contact-details").removeAttribute("class");
 }
 
 function handleDelete(event) {
@@ -81,10 +81,13 @@ function handleFormSubmission(event) {
   let newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber);
   addressBook.addContact(newContact);
   listContacts(addressBook);
+  document.querySelector("input#new-first-name").value = null;
+  document.querySelector("input#new-last-name").value = null;
+  document.querySelector("input#new-phone-number").value = null;
 }
 
 window.addEventListener("load", function (){
   document.querySelector("form#new-contact").addEventListener("submit", handleFormSubmission);
-  document.querySelector("div#contacts").addEventListener("click", displayContactDetails);  
-  document.querySelector("button.delete").addEventListener("click", handleDelete); 
+  document.querySelector("div#contacts").addEventListener("click", displayContactDetails);
+  document.querySelector("button.delete").addEventListener("click", handleDelete);
 });
